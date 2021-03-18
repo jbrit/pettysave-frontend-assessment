@@ -1,5 +1,9 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <div class="py-5">
+      Hey
+    </div>
+  </div>
 </template>
 
 <script>
