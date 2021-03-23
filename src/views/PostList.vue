@@ -18,7 +18,12 @@
             {{ post.title }}
           </div>
           <div class="mb-2">{{ post.body }}</div>
-          <a class="text-indigo-500" href="#">View Comments</a>
+          <router-link
+            class="text-indigo-500"
+            :to="{ name: 'PostDetail', params: { id: post.id } }"
+          >
+            View Comments
+          </router-link>
         </li>
       </ul>
     </div>
@@ -41,6 +46,12 @@ export default {
   computed: {
     posts() {
       return this.$store.state.posts;
+    },
+    currentPosts() {
+      return this.$store.state.posts.slice(
+        0 + 10 * (this.page - 1),
+        10 + 10 * (this.page - 1)
+      );
     },
   },
   mounted() {
