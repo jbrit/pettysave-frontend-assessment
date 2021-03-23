@@ -1,16 +1,16 @@
 <template>
   <div
-    class="min-h-screen flex items-center justify-center bg-indigo-100 big-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+    class="min-h-screen flex items-center justify-center bg-indigo-50 big-gray-50 py-12 px-4 sm:px-6 lg:px-8"
   >
-    <div class="max-w-md w-full space-y-8">
+    <div class="w-full space-y-8">
       <div>
         <div class="text-center text-3xl font-bold text-gray-900">
           List of Posts
         </div>
       </div>
-      <ul>
+      <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <li
-          class="p-3 rounded-md mb-4 bg-white"
+          class="p-3 rounded-md mb-4 bg-indigo-100"
           v-for="post in posts"
           :key="post.id"
         >
