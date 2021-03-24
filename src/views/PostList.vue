@@ -8,10 +8,25 @@
           List of Posts
         </div>
       </div>
+      <div class="flex justify-between">
+        <button
+          class="flex justify-center py-1 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none"
+          @click="decreasePage"
+        >
+          Previous
+        </button>
+        <div>Page {{ page }} of {{ totalPages }}</div>
+        <button
+          class="flex justify-center py-1 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none"
+          @click="increasePage"
+        >
+          Next
+        </button>
+      </div>
       <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <li
           class="p-3 rounded-md mb-4 bg-indigo-100"
-          v-for="post in posts"
+          v-for="post in currentPosts"
           :key="post.id"
         >
           <div class="font-bold">
@@ -42,10 +57,25 @@ export default {
     getPosts() {
       this.$store.dispatch("fetchPosts");
     },
+    increasePage() {
+      if (this.hasNext) this.page += 1;
+    },
+    decreasePage() {
+      if (this.hasPrev) this.page -= 1;
+    },
   },
   computed: {
     posts() {
       return this.$store.state.posts;
+    },
+    totalPages() {
+      return parseInt(this.$store.state.posts.length / 10);
+    },
+    hasPrev() {
+      return this.page > 1;
+    },
+    hasNext() {
+      return this.page < this.totalPages;
     },
     currentPosts() {
       return this.$store.state.posts.slice(
